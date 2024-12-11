@@ -76,7 +76,7 @@ if st.session_state.recommendation_btn == True:
 
     if result is None:
         st.write("Invalid TV Show or Movie Name")
-        st.write(data.sample(5)['title'].reset_index(drop=True))
+        st.write(data.sample(6)['title'].reset_index(drop=True).iloc[1:])
     else:
         for recommendation in results:
             # extracting information
