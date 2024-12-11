@@ -1,0 +1,123 @@
+/* Apply background image to the entire body */
+body {
+    animation: fadeIn 1.5s ease-in-out;
+    background-image: url('netflix.jpg'); /* Path to your image */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Make sure the body takes up full height of the viewport */
+    
+}
+
+/* Container styles */
+.container {
+    background-color: white;
+    border-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 8px 0px rgba(255, 0, 0, 0.948);
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    animation: slideIn 1.5s ease-in-out;
+}
+
+/* Header styles */
+.container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff0000;
+}
+
+/* Input field styles */
+.container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #575656;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #000000;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Input hover and focus */
+.container input[type="text"]:hover,
+.container input[type="text"]:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px #ff0000;
+    outline: none;
+}
+
+/* Button styles */
+.container button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.container .submit {
+    background-color: #ff0000; /* Yellow */
+    color: #000;
+}
+
+.container .clear {
+    background-color: #4e1e1b; /* Red */
+    color: white;
+}
+
+/* Button hover effects */
+.container button:hover {
+    transform: scale(1.1);
+}
+
+.container .submit:hover {
+    background-color: #e60000;
+}
+
+.container .clear:hover {
+    background-color: #490d0d;
+}
+
+/* Recommendation box styles */
+.recommendation-box {
+    margin-top: 20px;
+    text-align: left;
+    background-color: #fff2f2;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 14px;
+    /* box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.5); */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
