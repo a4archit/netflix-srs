@@ -1,6 +1,6 @@
 streamlit
 pandas
 numpy
-pickle
+pickle == 5
 urllib
 pathlib
