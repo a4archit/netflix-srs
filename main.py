@@ -2,12 +2,16 @@ import streamlit as st
 import pathlib
 import pickle
 import pandas as pd
+import numpy as np
 import urllib.parse
 
 # importing datasets
 train_data = pickle.load(open('_kaggle_working_train_data.pkl', 'rb'))
 data = pd.read_csv('netflix_titles.csv')
-similarity_score = pickle.load(open('similarity_score.pkl', 'rb'))
+churn_1 = pickle.load(open('similarity_score_churn_1.pkl','rb'))
+churn_2 = pickle.load(open('similarity_score_churn_2.pkl','rb'))
+similarity_score = np.concatenate([churn_1, churn_2])
+# similarity_score = pickle.load(open('similarity_score.pkl', 'rb'))
 
 # # ----------- Adding HTML, CSS & JS files to the streamlit ------------- #
 # html_file_content = pathlib.Path("index.html").read_text()
