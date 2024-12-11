@@ -69,26 +69,34 @@ submit_btn = st.button(
 )
 # when user click 'Recomend' button
 if st.session_state.recommendation_btn == True:
-    results = recommend(shows_name)
-    for recommendation in results:
-        # extracting information
-        xdata = data[data['title'] == recommendation]
-        title = xdata['title'].iloc[0]
-        type = xdata['type'].iloc[0]
-        cast = xdata['cast'].iloc[0]
-        country = xdata['country'].iloc[0]
-        release_year = xdata['release_year'].iloc[0]
-        duration = xdata['duration'].iloc[0]
-        description = xdata['description'].iloc[0]
-        url = get_netflix_search_url(title)
+    try:
+        results = recommend(shows_name.title())
+    except :
+        result = None
 
-        st.info(f"### :material/arrow_right_alt: **{title}**\
-        \n\n[Watch on Netflix]({url}) \
-        \n\nType: {type} \
-        \nCountry: {country} \
-        \nRelease year: {release_year} \
-        \nDuration: {duration} \
-        \nCast: {cast} \
-        \n\nDescription: {description} \
-        ")
+    if result is None:
+        st.write("Invalid TV Show or Movie Name")
+        st.write(data.sample(5)['title'])
+    else:
+        for recommendation in results:
+            # extracting information
+            xdata = data[data['title'] == recommendation]
+            title = xdata['title'].iloc[0]
+            type_ = xdata['type'].iloc[0]
+            cast = xdata['cast'].iloc[0]
+            country = xdata['country'].iloc[0]
+            release_year = xdata['release_year'].iloc[0]
+            duration = xdata['duration'].iloc[0]
+            description = xdata['description'].iloc[0]
+            url = get_netflix_search_url(title)
+
+            st.info(f"### :material/arrow_right_alt: **{title}**\
+            \n\n[Watch on Netflix]({url}) \
+            \n\nType: {type_} \
+            \nCountry: {country} \
+            \nRelease year: {release_year} \
+            \nDuration: {duration} \
+            \nCast: {cast} \
+            \n\nDescription: {description} \
+            ")
 
