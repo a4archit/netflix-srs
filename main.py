@@ -72,9 +72,9 @@ if st.session_state.recommendation_btn == True:
     try:
         results = recommend(shows_name.title())
     except :
-        result = None
+        results = None
 
-    if result is None:
+    if results is None:
         st.write("Invalid TV Show or Movie Name")
         st.write(data.sample(6)['title'].reset_index(drop=True).iloc[1:])
     else:
