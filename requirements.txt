@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+pickle
+urllib
+pathlib
