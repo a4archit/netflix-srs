@@ -56,17 +56,27 @@ shows_name = st.text_input(
     key = "input_label",
     placeholder="Enter Netflix TV Show or Movie here"
 )
-submit_btn = st.button(
-    "Recommend", 
-    key = "recommendation_btn",
-    use_container_width=True, type='primary'
-)
-submit_btn = st.button(
-    ":material/close:", 
-    key = "clear_btn",
-    use_container_width=True,
-    on_click=clear_input_fields
-)
+
+
+col1, col2 = st.columns(2)
+with col1:
+    submit_btn = st.button(
+        "Recommend", 
+        key = "recommendation_btn",
+        use_container_width=True, type='primary'
+    )
+
+with col2:
+    submit_btn = st.button(
+        ":material/close:", 
+        key = "clear_btn",
+        use_container_width=True,
+        on_click=clear_input_fields
+    )
+
+
+
+
 # when user click 'Recomend' button
 if st.session_state.recommendation_btn == True:
     try:
@@ -76,7 +86,8 @@ if st.session_state.recommendation_btn == True:
 
     if results is None:
         st.write("Invalid TV Show or Movie Name")
-        st.write(data.sample(6)['title'].reset_index(drop=True).iloc[1:])
+        random_indian_titles = data[data['country'].apply(lambda x: str(x).lower())=='india'].sample(6)['title'].reset_index(drop=True).iloc[1:].rename('Indian TV Shows/Movies')
+        st.write(random_indian_titles)
     else:
         for recommendation in results:
             # extracting information
