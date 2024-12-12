@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #f9f9f9;
         }
 
@@ -20,20 +20,24 @@
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
-            width: 60%;
+            width: 90%;
+            max-width: 400px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .card h1 {
-            font-size: 24px;
+            font-size: 20px;
             margin-bottom: 16px;
+            text-align: center;
         }
 
         .tags {
             display: flex;
+            justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .tag {
@@ -58,31 +62,24 @@
 
         .content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             gap: 20px;
         }
 
-        .left-section {
-            flex: 1;
-        }
-
-        .left-section p {
+        .left-section p,
+        .right-section p {
             margin: 8px 0;
             line-height: 1.6;
         }
 
-        .left-section .label {
+        .left-section .label,
+        .right-section .label {
             font-weight: bold;
             color: #0073e6;
         }
 
         .right-section {
-            flex: 1;
             color: #555;
-        }
-
-        .right-section p {
-            line-height: 1.6;
         }
 
         .btn-container {
@@ -103,6 +100,22 @@
 
         .btn:hover {
             background-color: #e64a19;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .left-section,
+            .right-section {
+                flex: 1;
+            }
         }
     </style>
 </head>
