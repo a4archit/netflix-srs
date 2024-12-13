@@ -32,6 +32,17 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+# ------------------ Sidebar -------------------------- #
+
+st.sidebar.title("About the developer")
+st.sidebar.divider()
+st.sidebar.write("I am try to create this web application through the use of \
+**Streamlit** with **HTML** and **CSS**. You can check my social media accounts: ")
+st.sidebar.write("[Kaggle](https://www.kaggle.com/architty108)")
+st.sidebar.write("[Github](https://www.github.com/a4archit)")
+st.sidebar.write("[LinkedIn](https://www.linkedin.com/in/archit-tyagi-191323296)")
+
+
 
 # ------------------------ Python functions ----------------- #
 def get_html_of_cast(cast):
