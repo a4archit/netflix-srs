@@ -14,15 +14,53 @@ similarity_score = np.concatenate([churn_1, churn_2])
 # similarity_score = pickle.load(open('similarity_score.pkl', 'rb'))
 
 # # ----------- Adding HTML, CSS & JS files to the streamlit ------------- #
-# html_file_content = pathlib.Path("index.html").read_text()
-# css_file_content = pathlib.Path("style.css").read_text()
+# html_file_content = pathlib.Path("movie_card_ui.html").read_text()
+movie_card_ui_css_file_content = pathlib.Path("movie_card_ui_css.css").read_text()
 # js_file_content = pathlib.Path("script.js").read_text()
 # # adding files content to webpage
-# st.markdown(html_file_content, unsafe_allow_html=True)
-# st.markdown(f"<style>{css_file_content}</style>", unsafe_allow_html=True)
+# st.markdown(movie_card_ui_css_file_content, unsafe_allow_html=True)
+st.markdown(f"<style>{movie_card_ui_css_file_content}</style>", unsafe_allow_html=True)
 # st.markdown(f"<script>{js_file_content}</script>", unsafe_allow_html=True)
 
+
 # ------------------------ Python functions ----------------- #
+def get_html_of_cast(cast):
+    html_str = ""
+    for i in cast.split(','):
+        html_str += f"<li>{i}</li>"
+    return html_str
+
+def get_html_content_for_movie_card_ui(title, type_, release_year, duration, director,country, cast, description, url) -> str:
+    
+    html_movie_card_ui = f"""
+    <div class="card">
+    <h1>{title}</h1>
+        <div class="tags">
+            <span class="tag">{type_}</span>
+            <span class="tag">{release_year}</span>
+            <span class="tag">{duration}</span>
+        </div>
+        <div class="content">
+            <div class="left-section">
+                <p><span class="label">Director:</span>{director}</p>
+                <p><span class="label">Country:</span> {country}</p>
+                <p><span class="label">Casts:</span></p>
+                <ul>
+                    {get_html_of_cast(cast)}
+                </ul>
+            </div>
+            <div class="right-section">
+                <p><span class="label">Description:</span></p>
+                <p>{description}</p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="{url}" class="btn">Watch now on Netflix</a>
+        </div>
+    </div>
+    """
+    return html_movie_card_ui
+
 def get_netflix_search_url(movie_title):
     base_url = "https://www.netflix.com/search?q="
     encoded_title = urllib.parse.quote(movie_title)
@@ -95,19 +133,25 @@ if st.session_state.recommendation_btn == True:
             title = xdata['title'].iloc[0]
             type_ = xdata['type'].iloc[0]
             cast = xdata['cast'].iloc[0]
+            director = xdata['director'].iloc[0]
             country = xdata['country'].iloc[0]
             release_year = xdata['release_year'].iloc[0]
             duration = xdata['duration'].iloc[0]
             description = xdata['description'].iloc[0]
             url = get_netflix_search_url(title)
 
-            st.info(f"### :material/arrow_right_alt: **{title}**\
-            \n\n[Watch on Netflix]({url}) \
-            \n\nType: {type_} \
-            \nCountry: {country} \
-            \nRelease year: {release_year} \
-            \nDuration: {duration} \
-            \nCast: {cast} \
-            \n\nDescription: {description} \
-            ")
+            st.markdown(
+                get_html_content_for_movie_card_ui(title, type_, release_year, duration, director, country, cast, description, url),
+                unsafe_allow_html = True
+            )
+
+            # st.info(f"### :material/arrow_right_alt: **{title}**\
+            # \n\n[Watch on Netflix]({url}) \
+            # \n\nType: {type_} \
+            # \nCountry: {country} \
+            # \nRelease year: {release_year} \
+            # \nDuration: {duration} \
+            # \nCast: {cast} \
+            # \n\nDescription: {description} \
+            # ")
 
