@@ -168,13 +168,4 @@ if st.session_state.recommendation_btn == True:
                 unsafe_allow_html = True
             )
 
-            # st.info(f"### :material/arrow_right_alt: **{title}**\
-            # \n\n[Watch on Netflix]({url}) \
-            # \n\nType: {type_} \
-            # \nCountry: {country} \
-            # \nRelease year: {release_year} \
-            # \nDuration: {duration} \
-            # \nCast: {cast} \
-            # \n\nDescription: {description} \
-            # ")
 
