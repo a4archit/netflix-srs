@@ -14,20 +14,30 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 90%;
-    max-width: 400px;
+    max-width: 1000px;
+    margin: 20px 0;
+    margin-left: 5%;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
+.card:hover{
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 .card h1 {
     font-size: 20px;
-    margin-bottom: 16px;
+    margin: -20px -20px 16px -20px;
     text-align: center;
+    background-color: #0073e6;
+    color: #fff;
+    box-sizing: border-box;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .tags {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
     margin-bottom: 20px;
     flex-wrap: wrap;
@@ -56,6 +66,7 @@ body {
 .content {
     display: flex;
     flex-direction: column;
+    color: #555;
     gap: 20px;
 }
 
@@ -81,13 +92,14 @@ body {
 }
 
 .btn {
+    text-decoration: none;
+    text-decoration-color: #fff;
     background-color: #ff5722;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    text-decoration: none;
     display: inline-block;
 }
 

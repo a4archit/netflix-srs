@@ -22,12 +22,24 @@ movie_card_ui_css_file_content = pathlib.Path("movie_card_ui_css.css").read_text
 st.markdown(f"<style>{movie_card_ui_css_file_content}</style>", unsafe_allow_html=True)
 # st.markdown(f"<script>{js_file_content}</script>", unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #f0f0f0;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # ------------------------ Python functions ----------------- #
 def get_html_of_cast(cast):
     html_str = ""
-    for i in cast.split(','):
-        html_str += f"<li>{i}</li>"
+    for i, v in enumerate(cast.split(',')):
+        if i > 2:
+            return html_str
+        html_str += f"<li>{v}</li>"
     return html_str
 
 def get_html_content_for_movie_card_ui(title, type_, release_year, duration, director,country, cast, description, url) -> str:
@@ -42,7 +54,7 @@ def get_html_content_for_movie_card_ui(title, type_, release_year, duration, dir
         </div>
         <div class="content">
             <div class="left-section">
-                <p><span class="label">Director:</span>{director}</p>
+                <p><span class="label">Director:</span> {director}</p>
                 <p><span class="label">Country:</span> {country}</p>
                 <p><span class="label">Casts:</span></p>
                 <ul>
