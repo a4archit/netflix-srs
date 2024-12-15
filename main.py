@@ -22,16 +22,10 @@ movie_card_ui_css_file_content = pathlib.Path("movie_card_ui_css.css").read_text
 st.markdown(f"<style>{movie_card_ui_css_file_content}</style>", unsafe_allow_html=True)
 # st.markdown(f"<script>{js_file_content}</script>", unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #f0f0f0;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
+
+
+
 # ------------------ Sidebar -------------------------- #
 
 st.sidebar.title("About the developer")
@@ -91,13 +85,13 @@ def get_netflix_search_url(movie_title):
 def clear_input_fields():
     st.session_state.input_label = None
 
-def recommend(show_or_movie_name):
+def recommend(show_or_movie_name, max_items):
     index = train_data[train_data['title'] == show_or_movie_name].index[0]
     distances = sorted(
         list(enumerate(similarity_score[index])),
         reverse = True, 
         key = lambda x: x[1]
-    )[1:6]
+    )[1:max_items]
     result = []
     for i in distances:
         result.append(train_data.iloc[i[0]].title)
@@ -111,14 +105,21 @@ st.header("Netflix SRS", divider=True)
 st.write("Netflix Shows Recommender System(SRS) will help you to choose Netflix show based on your choices.")
 
 st.subheader("Get your favorite shows instant")
-shows_name = st.text_input(
-    "",
-    key = "input_label",
-    placeholder="Enter Netflix TV Show or Movie here"
-)
-
 
 col1, col2 = st.columns(2)
+with col1:
+    shows_name = st.selectbox(
+        "",
+        data['title'].tolist(),
+        key = "input_label",
+        placeholder="Enter Netflix TV Show or Movie here"
+    )
+with col2:
+    no_of_movies = st.selectbox(
+        "",
+        [f'{i} recommendations' for i in range(1,11)]
+    )
+
 with col1:
     submit_btn = st.button(
         "Recommend", 
@@ -127,7 +128,7 @@ with col1:
     )
 
 with col2:
-    submit_btn = st.button(
+    clear_btn = st.button(
         ":material/close:", 
         key = "clear_btn",
         use_container_width=True,
@@ -140,12 +141,13 @@ with col2:
 # when user click 'Recomend' button
 if st.session_state.recommendation_btn == True:
     try:
-        results = recommend(shows_name.title())
+        max_movies = int(no_of_movies.split(' ')[0])+1
+        results = recommend(shows_name, max_movies)
     except :
         results = None
 
     if results is None:
-        st.write("Invalid TV Show or Movie Name")
+        st.write(f"No results for '**{shows_name}**'")
         random_indian_titles = data[data['country'].apply(lambda x: str(x).lower())=='india'].sample(6)['title'].reset_index(drop=True).iloc[1:].rename('Indian TV Shows/Movies')
         st.write(random_indian_titles)
     else:
@@ -166,15 +168,10 @@ if st.session_state.recommendation_btn == True:
                 get_html_content_for_movie_card_ui(title, type_, release_year, duration, director, country, cast, description, url),
                 unsafe_allow_html = True
             )
-
-        st.write("Your feedback: ")
-        feedback = st.feedback("stars")
-        if feedback is not None:
-            feedback_data = pd.read_csv(r"feedback_data.csv")
-            new_feedback = {'rating':int(feedback)}
-            feedback_data = feedback_data.append(new_feedback, ignore_index=True)
-            feedback_data.to_csv('feedback_data.csv')            
+            
 
 
-
+st.image(
+    "netflix.jpg", caption="Netflix"
+)
 
