@@ -91,11 +91,14 @@ body {
     text-align: center;
 }
 
-.btn {
+.btn-container > a {
     text-decoration: none;
-    text-decoration-color: #fff;
-    background-color: #ff5722;
     color: #fff;
+    text-shadow: 1px 1px 3px #504e4e;
+}
+
+.btn {
+    background-color: #ff5722;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;

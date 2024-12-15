@@ -43,7 +43,6 @@ st.sidebar.write("[Github](https://www.github.com/a4archit)")
 st.sidebar.write("[LinkedIn](https://www.linkedin.com/in/archit-tyagi-191323296)")
 
 
-
 # ------------------------ Python functions ----------------- #
 def get_html_of_cast(cast):
     html_str = ""
@@ -167,5 +166,15 @@ if st.session_state.recommendation_btn == True:
                 get_html_content_for_movie_card_ui(title, type_, release_year, duration, director, country, cast, description, url),
                 unsafe_allow_html = True
             )
+
+        st.write("Your feedback: ")
+        feedback = st.feedback("stars")
+        if feedback is not None:
+            feedback_data = pd.read_csv(r"feedback_data.csv")
+            new_feedback = {'rating':int(feedback)}
+            feedback_data = feedback_data.append(new_feedback, ignore_index=True)
+            feedback_data.to_csv('feedback_data.csv')            
+
+
 
 
