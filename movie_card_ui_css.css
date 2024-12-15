@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px 0;
+    margin-left: 5%;
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.card:hover{
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.card h1 {
+    font-size: 20px;
+    margin: -20px -20px 16px -20px;
+    text-align: center;
+    background-color: #0073e6;
+    color: #fff;
+    box-sizing: border-box;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tags {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tag:first-child {
+    background-color: #777;
+}
+
+.tag:nth-child(2) {
+    background-color: #00bcd4;
+}
+
+.tag:nth-child(3) {
+    background-color: #ffeb3b;
+    color: #000;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    color: #555;
+    gap: 20px;
+}
+
+.left-section p,
+.right-section p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.left-section .label,
+.right-section .label {
+    font-weight: bold;
+    color: #0073e6;
+}
+
+.right-section {
+    color: #555;
+}
+
+.btn-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-container > a {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 1px 1px 3px #504e4e;
+}
+
+.btn {
+    background-color: #ff5722;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #e64a19;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+@media (min-width: 600px) {
+    .content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .left-section,
+    .right-section {
+        flex: 1;
+    }
+}
