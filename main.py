@@ -11,16 +11,11 @@ data = pd.read_csv('netflix_titles.csv')
 churn_1 = pickle.load(open('x_similarity_score_churn_1.pkl','rb'))
 churn_2 = pickle.load(open('x_similarity_score_churn_2.pkl','rb'))
 similarity_score = np.concatenate([churn_1, churn_2])
-# similarity_score = pickle.load(open('similarity_score.pkl', 'rb'))
 
 # # ----------- Adding HTML, CSS & JS files to the streamlit ------------- #
-# html_file_content = pathlib.Path("movie_card_ui.html").read_text()
 movie_card_ui_css_file_content = pathlib.Path("movie_card_ui_css.css").read_text()
-# js_file_content = pathlib.Path("script.js").read_text()
 # # adding files content to webpage
-# st.markdown(movie_card_ui_css_file_content, unsafe_allow_html=True)
 st.markdown(f"<style>{movie_card_ui_css_file_content}</style>", unsafe_allow_html=True)
-# st.markdown(f"<script>{js_file_content}</script>", unsafe_allow_html=True)
 
 
 
