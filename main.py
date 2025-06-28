@@ -7,7 +7,7 @@ import urllib.parse
 
 # importing datasets
 train_data = pickle.load(open('_kaggle_working_train_data.pkl', 'rb'))
-data = pd.read_csv('netflix_titles.csv')
+data = pd.read_csv('netflix_titles.csv') 
 churn_1 = pickle.load(open('x_similarity_score_churn_1.pkl','rb'))
 churn_2 = pickle.load(open('x_similarity_score_churn_2.pkl','rb'))
 similarity_score = np.concatenate([churn_1, churn_2])
