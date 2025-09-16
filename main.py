@@ -1,3 +1,4 @@
+# dependencies
 import streamlit as st
 import pathlib
 import pickle
@@ -41,7 +42,9 @@ def get_html_of_cast(cast):
         html_str += f"<li>{v}</li>"
     return html_str
 
+
 def get_html_content_for_movie_card_ui(title, type_, release_year, duration, director,country, cast, description, url) -> str:
+    """ it will return the HTML context for an UI """
     
     html_movie_card_ui = f"""
     <div class="card">
@@ -166,7 +169,9 @@ if st.session_state.recommendation_btn == True:
             
 
 
+# display image
 st.image(
     "netflix.jpg", caption="Netflix"
 )
+
 
